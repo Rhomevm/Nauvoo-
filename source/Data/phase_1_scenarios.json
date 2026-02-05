@@ -1,0 +1,273 @@
+{
+  "phase_1_scenarios": [
+    {
+      "id": "scenario_arrival",
+      "name": "Arrival in Nauvoo",
+      "trigger": "game_start",
+      "description": "Player arrives in Nauvoo and meets Captain Marks for the first time",
+      "objectives": [
+        "Meet Captain Isaiah Marks",
+        "Learn about the Nauvoo Legion",
+        "Accept military service"
+      ],
+      "key_npcs": ["npc_captain_isaiah_marks", "npc_sarah_marks"],
+      "location_id": "loc_town_square",
+      "start_time": "06:00",
+      "start_date": "05-15-1841",
+      "events": [
+        {
+          "id": "event_marks_greeting",
+          "type": "dialogue",
+          "trigger": "player_near_captain",
+          "dialogue_tree_id": "dialogue_captain_marks_introduction",
+          "npc_id": "npc_captain_isaiah_marks",
+          "one_time": true
+        }
+      ],
+      "success_condition": "Recruit joins Legion",
+      "failure_condition": "Player refuses service",
+      "reputation_changes": {
+        "legion_delta": 0,
+        "community_delta": 0,
+        "outsider_delta": 0
+      }
+    },
+    {
+      "id": "scenario_first_drill",
+      "name": "First Militia Drill",
+      "trigger": "recruit_joins_legion",
+      "prerequisite_scenario": "scenario_arrival",
+      "description": "Player participates in first militia drill with Sergeant James",
+      "objectives": [
+        "Report to Sergeant James at drill grounds",
+        "Complete basic firearms training",
+        "Maintain discipline during drill"
+      ],
+      "key_npcs": ["npc_sergeant_james", "npc_captain_isaiah_marks"],
+      "location_id": "loc_drill_grounds",
+      "start_time": "06:00",
+      "start_date": "05-16-1841",
+      "events": [
+        {
+          "id": "event_drill_begins",
+          "type": "event_notification",
+          "trigger": "player_arrives_drill_grounds",
+          "message": "Sergeant James calls the recruits to attention for morning drill"
+        },
+        {
+          "id": "event_drill_training",
+          "type": "training_exercise",
+          "trigger": "player_in_formation",
+          "difficulty": 1,
+          "duration_minutes": 120,
+          "reward_legion_reputation": 15,
+          "outcome_text": "You successfully complete the drill. Sergeant James nods approvingly."
+        }
+      ],
+      "success_condition": "Player completes drill",
+      "failure_condition": "Player abandons drill",
+      "reputation_changes": {
+        "legion_delta": 15,
+        "community_delta": 5,
+        "outsider_delta": -5
+      }
+    },
+    {
+      "id": "scenario_town_patrol",
+      "name": "Evening Town Patrol",
+      "trigger": "military_training_complete",
+      "prerequisite_scenario": "scenario_first_drill",
+      "description": "Player joins evening patrol with Sergeant James to learn about town security",
+      "objectives": [
+        "Patrol with Sergeant James",
+        "Check town perimeter",
+        "Maintain watch at town gate"
+      ],
+      "key_npcs": ["npc_sergeant_james"],
+      "location_id": "loc_town_square",
+      "start_time": "18:00",
+      "start_date": "05-16-1841",
+      "events": [
+        {
+          "id": "event_outsider_approach",
+          "type": "encounter",
+          "trigger": "patrol_at_gate",
+          "description": "A suspicious outsider approaches the town gate",
+          "npc_id": "npc_jacob_harrison",
+          "choices": [
+            {
+              "id": "choice_aggressive_patrol",
+              "text": "Order the outsider to leave immediately",
+              "reputation_delta": {
+                "legion_delta": 10,
+                "outsider_delta": -20
+              },
+              "next_event": "event_outsider_leaves_angry"
+            },
+            {
+              "id": "choice_diplomatic_patrol",
+              "text": "Ask the outsider's business politely",
+              "reputation_delta": {
+                "community_delta": 5,
+                "outsider_delta": 5
+              },
+              "next_event": "event_outsider_explains"
+            }
+          ]
+        }
+      ],
+      "success_condition": "Patrol completed without incident",
+      "reputation_changes": {
+        "legion_delta": 10,
+        "community_delta": 2,
+        "outsider_delta": -5
+      }
+    },
+    {
+      "id": "scenario_community_service",
+      "name": "Community Assistance",
+      "trigger": "any_time_after_first_drill",
+      "description": "Player can help civilians with various tasks to earn community reputation",
+      "objectives": [
+        "Help Sara Williams with gathering herbs",
+        "Assist Thomas Brown with blacksmith work",
+        "Help families with minor repairs"
+      ],
+      "repeatable": true,
+      "key_npcs": ["npc_sara_williams", "npc_thomas_brown"],
+      "location_id": "loc_market",
+      "events": [
+        {
+          "id": "event_sara_request",
+          "type": "dialogue",
+          "npc_id": "npc_sara_williams",
+          "dialogue_tree_id": "dialogue_sara_welcome",
+          "responses": [
+            {
+              "text": "Is there anything I can do to help?",
+              "consequence": {
+                "action_id": "help_with_task",
+                "reputation_delta": {
+                  "community_delta": 15
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "reputation_changes": {
+        "legion_delta": 0,
+        "community_delta": 15,
+        "outsider_delta": 0
+      }
+    },
+    {
+      "id": "scenario_moral_choice_1",
+      "name": "The Outsider at the Gate",
+      "trigger": "day_3_evening",
+      "prerequisite_scenario": "scenario_town_patrol",
+      "description": "A critical moral decision emerges when an outsider is found loitering near town",
+      "objectives": [
+        "Decide Jacob Harrison's fate",
+        "Balance Legion orders with personal morality"
+      ],
+      "key_npcs": ["npc_jacob_harrison", "npc_captain_isaiah_marks", "npc_sara_williams"],
+      "location_id": "loc_town_gate",
+      "start_date": "05-18-1841",
+      "start_time": "20:00",
+      "events": [
+        {
+          "id": "event_outsider_caught",
+          "type": "encounter",
+          "description": "Jacob Harrison found scouting the town defenses",
+          "choices": [
+            {
+              "id": "choice_arrest_outsider",
+              "text": "Arrest Harrison and report to Captain Marks (Follow Orders)",
+              "reputation_delta": {
+                "legion_delta": 20,
+                "community_delta": -10,
+                "outsider_delta": -30
+              },
+              "action_id": "enforce_curfew_harshly",
+              "next_event": "event_harrison_detained"
+            },
+            {
+              "id": "choice_warn_outsider",
+              "text": "Warn Harrison to leave and let him go (Show Mercy)",
+              "reputation_delta": {
+                "legion_delta": -20,
+                "community_delta": 25,
+                "outsider_delta": 30
+              },
+              "action_id": "show_mercy_to_enemy",
+              "next_event": "event_harrison_escapes"
+            },
+            {
+              "id": "choice_report_to_captain",
+              "text": "Tell Captain Marks you need guidance on this matter",
+              "reputation_delta": {
+                "legion_delta": 5
+              },
+              "next_event": "event_marks_decides"
+            }
+          ]
+        },
+        {
+          "id": "event_harrison_detained",
+          "type": "consequence",
+          "description": "Jacob is detained. News spreads through town causing anxiety about tensions escalating."
+        },
+        {
+          "id": "event_harrison_escapes",
+          "type": "consequence",
+          "description": "Jacob thanks you quietly and disappears into the night. Word reaches Sara that you showed mercy."
+        },
+        {
+          "id": "event_marks_decides",
+          "type": "dialogue",
+          "npc_id": "npc_captain_isaiah_marks",
+          "dialogue_tree_id": "dialogue_marks_guidance",
+          "description": "Captain Marks tells you the decision is yours, but warns of consequences either way."
+        }
+      ],
+      "success_condition": "Make a decision about Harrison's fate",
+      "opens_dialogue": ["dialogue_marks_guidance", "dialogue_sara_morality"]
+    }
+  ],
+  "phase_1_timeline": {
+    "day_1": {
+      "date": "05-15-1841",
+      "primary_events": ["scenario_arrival"],
+      "npc_activities": [
+        {"npc_id": "npc_captain_isaiah_marks", "activity": "on_duty_at_legion_hq"},
+        {"npc_id": "npc_sara_williams", "activity": "at_clinic"},
+        {"npc_id": "npc_thomas_brown", "activity": "at_blacksmith"}
+      ]
+    },
+    "day_2": {
+      "date": "05-16-1841",
+      "primary_events": ["scenario_first_drill", "scenario_town_patrol"],
+      "npc_activities": [
+        {"npc_id": "npc_sergeant_james", "activity": "conducting_drills"},
+        {"npc_id": "npc_captain_isaiah_marks", "activity": "overseeing_training"}
+      ]
+    },
+    "day_3": {
+      "date": "05-17-1841",
+      "primary_events": ["scenario_community_service"],
+      "npc_activities": [
+        {"npc_id": "npc_sara_williams", "activity": "at_market"},
+        {"npc_id": "npc_thomas_brown", "activity": "in_town"}
+      ]
+    },
+    "day_4": {
+      "date": "05-18-1841",
+      "primary_events": ["scenario_moral_choice_1"],
+      "npc_activities": [
+        {"npc_id": "npc_jacob_harrison", "activity": "scouting"},
+        {"npc_id": "npc_captain_isaiah_marks", "activity": "evening_patrol"}
+      ]
+    }
+  }
+}

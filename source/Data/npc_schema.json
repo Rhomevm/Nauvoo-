@@ -1,0 +1,176 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Nauvoo NPC Data Schema",
+  "description": "Complete schema for NPC definition, scheduling, and relationships",
+  
+  "definitions": {
+    "NPC": {
+      "type": "object",
+      "required": ["id", "name", "age", "occupation", "faction"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for NPC (e.g., 'npc_captain_marks')"
+        },
+        "name": {
+          "type": "string",
+          "description": "Display name"
+        },
+        "age": {
+          "type": "integer",
+          "minimum": 10,
+          "maximum": 100,
+          "description": "Age in years"
+        },
+        "occupation": {
+          "type": "string",
+          "enum": ["farmer", "blacksmith", "carpentry", "preacher", "officer", "merchant", "healer", "teacher", "guard"],
+          "description": "Primary occupation"
+        },
+        "faction": {
+          "type": "string",
+          "enum": ["lds_civilian", "legion_soldier", "outsider", "neutral"],
+          "description": "Faction allegiance"
+        },
+        "legion_rank": {
+          "type": "string",
+          "enum": ["recruit", "legionnaire", "senior_legionnaire", "sergeant", "captain", "commander"],
+          "description": "Military rank (if applicable)"
+        },
+        "beliefs": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Ideological views (e.g., 'faithful', 'skeptical', 'pragmatic')"
+        },
+        "home_location_id": {
+          "type": "string",
+          "description": "Building ID where NPC lives"
+        },
+        "relationships": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "target_npc_id": { "type": "string" },
+              "initial_trust": { "type": "integer", "minimum": -100, "maximum": 100 },
+              "initial_fear": { "type": "integer", "minimum": 0, "maximum": 100 },
+              "initial_respect": { "type": "integer", "minimum": -100, "maximum": 100 },
+              "relationship_type": { 
+                "type": "string",
+                "enum": ["family", "friend", "colleague", "rival", "acquaintance", "stranger"]
+              }
+            }
+          },
+          "description": "Initial relationships with other NPCs"
+        },
+        "schedule_id": {
+          "type": "string",
+          "description": "Reference to schedule definition"
+        },
+        "initial_dialogue_tree_id": {
+          "type": "string",
+          "description": "First dialogue tree (introduction)"
+        },
+        "traits": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Personality traits (e.g., 'honorable', 'ambitious', 'cautious')"
+        }
+      }
+    },
+
+    "Schedule": {
+      "type": "object",
+      "required": ["id", "npc_id", "daily_routine"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique schedule ID"
+        },
+        "npc_id": {
+          "type": "string",
+          "description": "NPC this schedule belongs to"
+        },
+        "daily_routine": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/ScheduleActivity" },
+          "description": "Ordered list of daily activities"
+        },
+        "seasonal_overrides": {
+          "type": "object",
+          "properties": {
+            "spring": { "type": "array", "items": { "$ref": "#/definitions/ScheduleActivity" } },
+            "summer": { "type": "array", "items": { "$ref": "#/definitions/ScheduleActivity" } },
+            "fall": { "type": "array", "items": { "$ref": "#/definitions/ScheduleActivity" } },
+            "winter": { "type": "array", "items": { "$ref": "#/definitions/ScheduleActivity" } }
+          },
+          "description": "Activity variations by season"
+        },
+        "event_overrides": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": { "$ref": "#/definitions/ScheduleActivity" }
+          },
+          "description": "Activity overrides for specific events (key = event_id)"
+        }
+      }
+    },
+
+    "ScheduleActivity": {
+      "type": "object",
+      "required": ["time_start_minute", "time_end_minute", "location_id", "action"],
+      "properties": {
+        "time_start_minute": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1440,
+          "description": "Start time in game minutes (0-1440 per day)"
+        },
+        "time_end_minute": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1440,
+          "description": "End time in game minutes"
+        },
+        "location_id": {
+          "type": "string",
+          "description": "Building or location ID"
+        },
+        "action": {
+          "type": "string",
+          "enum": ["work", "rest", "socialize", "pray", "eat", "travel", "guard_duty", "training", "idle"],
+          "description": "Type of activity"
+        },
+        "interruptible": {
+          "type": "boolean",
+          "default": true,
+          "description": "Can this activity be interrupted by events/player?"
+        },
+        "social_group": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "NPC IDs present during this activity"
+        },
+        "notes": {
+          "type": "string",
+          "description": "Contextual notes for designers"
+        }
+      }
+    }
+  },
+
+  "type": "object",
+  "properties": {
+    "npcs": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/NPC" },
+      "description": "All NPCs in the game"
+    },
+    "schedules": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/Schedule" },
+      "description": "All schedules"
+    }
+  }
+}

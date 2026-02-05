@@ -1,0 +1,184 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Dialogue Tree Schema",
+  "description": "Complete schema for dialogue trees and dialogue choices",
+  
+  "definitions": {
+    "DialogueChoice": {
+      "type": "object",
+      "required": ["id", "text"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique choice identifier"
+        },
+        "text": {
+          "type": "string",
+          "description": "Choice text displayed to player"
+        },
+        "next_node_id": {
+          "type": "string",
+          "description": "ID of dialogue node to go to when selected"
+        },
+        "legion_rep_requirement": {
+          "type": ["integer", "null"],
+          "description": "Minimum Legion reputation required (-100 to 100, null = no requirement)"
+        },
+        "community_rep_requirement": {
+          "type": ["integer", "null"],
+          "description": "Minimum Community reputation required"
+        },
+        "outsider_rep_requirement": {
+          "type": ["integer", "null"],
+          "description": "Minimum Outsider reputation required"
+        },
+        "npc_trust_requirement": {
+          "type": ["integer", "null"],
+          "description": "Minimum NPC trust with player"
+        },
+        "previously_chosen_ids": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Choice IDs that must have been selected previously"
+        },
+        "consequence_type": {
+          "type": "string",
+          "enum": ["none", "reputation_change", "relationship_change", "event_trigger", "relationship_lock"],
+          "description": "Type of consequence"
+        },
+        "consequences": {
+          "type": "object",
+          "properties": {
+            "legion_delta": { "type": "integer", "description": "Legion reputation change" },
+            "community_delta": { "type": "integer" },
+            "outsider_delta": { "type": "integer" },
+            "npc_trust_delta": { "type": "integer", "description": "Trust change with this NPC" },
+            "trigger_event_id": { "type": "string", "description": "Event to trigger" },
+            "lock_dialogue_ids": { "type": "array", "items": { "type": "string" } }
+          }
+        }
+      }
+    },
+
+    "DialogueNode": {
+      "type": "object",
+      "required": ["id", "type"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique node identifier"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["speech", "choice", "condition", "action", "end"],
+          "description": "Type of dialogue node"
+        },
+        
+        "speaker_npc_id": {
+          "type": ["string", "null"],
+          "description": "NPC speaking (speech nodes)"
+        },
+        "text": {
+          "type": ["string", "null"],
+          "description": "Dialogue text (speech nodes)"
+        },
+        "audio_cue_id": {
+          "type": ["string", "null"],
+          "description": "Audio clip ID for voice acting"
+        },
+        "emotion": {
+          "type": ["string", "null"],
+          "enum": ["neutral", "happy", "angry", "sad", "afraid", "confused"],
+          "description": "Emotional tone for animation"
+        },
+        
+        "choices": {
+          "type": ["array", "null"],
+          "items": { "$ref": "#/definitions/DialogueChoice" },
+          "description": "Available choices (choice nodes)"
+        },
+        
+        "condition_type": {
+          "type": ["string", "null"],
+          "enum": ["reputation_check", "event_flag", "npc_alive", "inventory_check", "relationship_check"],
+          "description": "Type of condition (condition nodes)"
+        },
+        "condition_parameters": {
+          "type": ["object", "null"],
+          "description": "Parameters for condition check",
+          "properties": {
+            "faction": { "type": "string" },
+            "threshold": { "type": "integer" },
+            "event_id": { "type": "string" },
+            "npc_id": { "type": "string" },
+            "item_id": { "type": "string" }
+          }
+        },
+        "true_branch_node_id": {
+          "type": ["string", "null"],
+          "description": "Node if condition is true"
+        },
+        "false_branch_node_id": {
+          "type": ["string", "null"],
+          "description": "Node if condition is false"
+        },
+        
+        "action_type": {
+          "type": ["string", "null"],
+          "enum": ["update_reputation", "trigger_event", "set_flag", "give_item", "start_quest"],
+          "description": "Action to perform (action nodes)"
+        },
+        "action_parameters": {
+          "type": ["object", "null"],
+          "description": "Parameters for action"
+        },
+        
+        "next_node_id": {
+          "type": ["string", "null"],
+          "description": "Next node after this one (for linear progression)"
+        },
+        
+        "notes": {
+          "type": ["string", "null"],
+          "description": "Designer notes"
+        }
+      }
+    }
+  },
+
+  "type": "object",
+  "required": ["id", "npc_id", "root_node_id", "nodes"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique dialogue tree ID"
+    },
+    "npc_id": {
+      "type": "string",
+      "description": "NPC who speaks this dialogue"
+    },
+    "title": {
+      "type": "string",
+      "description": "Descriptive title for designer reference"
+    },
+    "root_node_id": {
+      "type": "string",
+      "description": "ID of starting node"
+    },
+    "nodes": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/DialogueNode" },
+      "description": "All dialogue nodes in this tree"
+    },
+    "triggers": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Events or conditions that enable this dialogue"
+    },
+    "one_time_only": {
+      "type": "boolean",
+      "default": false,
+      "description": "Can only be played once?"
+    }
+  }
+}

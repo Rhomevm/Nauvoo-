@@ -1,0 +1,276 @@
+{
+  "action_reputation_modifiers": {
+    "npc_interactions": {
+      "help_with_task": {
+        "legion": 0,
+        "community": 30,
+        "outsider": 0,
+        "gossip_spread": "medium",
+        "witness_count_modifier": 1.0,
+        "description": "Helped NPC with work/task"
+      },
+      "give_food_to_hungry": {
+        "legion": -5,
+        "community": 40,
+        "outsider": 10,
+        "gossip_spread": "high",
+        "description": "Gave food to starving person"
+      },
+      "attend_meeting": {
+        "legion": 10,
+        "community": 5,
+        "outsider": 0,
+        "gossip_spread": "low",
+        "description": "Attended civic/religious meeting"
+      },
+      "donate_supplies": {
+        "legion": 0,
+        "community": 40,
+        "outsider": 10,
+        "gossip_spread": "high",
+        "description": "Donated resources to community"
+      },
+      "refuse_to_help": {
+        "legion": 5,
+        "community": -20,
+        "outsider": 0,
+        "gossip_spread": "medium",
+        "description": "Refused assistance to civilian"
+      }
+    },
+    "militia_duties": {
+      "attend_drill": {
+        "legion": 20,
+        "community": 0,
+        "outsider": 0,
+        "gossip_spread": "low",
+        "description": "Participated in militia drill"
+      },
+      "skip_drill": {
+        "legion": -30,
+        "community": 0,
+        "outsider": 0,
+        "gossip_spread": "low",
+        "description": "Missed assigned militia duty"
+      },
+      "excel_in_training": {
+        "legion": 30,
+        "community": 5,
+        "outsider": 0,
+        "gossip_spread": "medium",
+        "description": "Performed exceptionally in training"
+      },
+      "complete_patrol": {
+        "legion": 15,
+        "community": 0,
+        "outsider": 0,
+        "gossip_spread": "low",
+        "description": "Completed assigned patrol"
+      },
+      "return_late_from_patrol": {
+        "legion": -15,
+        "community": 0,
+        "outsider": 0,
+        "gossip_spread": "low",
+        "description": "Returned late from patrol"
+      }
+    },
+    "enforcement": {
+      "enforce_curfew_harshly": {
+        "legion": 25,
+        "community": -30,
+        "outsider": -20,
+        "gossip_spread": "medium",
+        "description": "Violently enforced curfew"
+      },
+      "enforce_curfew_fairly": {
+        "legion": 15,
+        "community": 10,
+        "outsider": 0,
+        "gossip_spread": "low",
+        "description": "Enforced curfew with fairness"
+      },
+      "arrest_innocent": {
+        "legion": 20,
+        "community": -50,
+        "outsider": -30,
+        "gossip_spread": "very_high",
+        "description": "Arrested innocent person"
+      },
+      "release_falsely_accused": {
+        "legion": -40,
+        "community": 50,
+        "outsider": 20,
+        "gossip_spread": "very_high",
+        "description": "Released innocent detained person"
+      },
+      "beat_prisoner": {
+        "legion": 20,
+        "community": -50,
+        "outsider": -30,
+        "gossip_spread": "very_high",
+        "description": "Brutalized captive"
+      }
+    },
+    "violence": {
+      "defend_civilian_from_outsider": {
+        "legion": 20,
+        "community": 40,
+        "outsider": -20,
+        "gossip_spread": "high",
+        "description": "Defended community member from threat"
+      },
+      "attack_unarmed_person": {
+        "legion": 10,
+        "community": -40,
+        "outsider": -30,
+        "gossip_spread": "very_high",
+        "description": "Initiated violence against unarmed person"
+      },
+      "accept_surrender": {
+        "legion": 0,
+        "community": 30,
+        "outsider": 20,
+        "gossip_spread": "high",
+        "description": "Accepted combatant's surrender"
+      },
+      "execute_surrendered_enemy": {
+        "legion": 30,
+        "community": -60,
+        "outsider": -40,
+        "gossip_spread": "very_high",
+        "description": "Executed surrendered person"
+      },
+      "kill_in_combat": {
+        "legion": 10,
+        "community": 0,
+        "outsider": -10,
+        "gossip_spread": "medium",
+        "description": "Killed in combat (depends on context)"
+      }
+    },
+    "outsider_relations": {
+      "trade_with_outsiders": {
+        "legion": -5,
+        "community": 5,
+        "outsider": 30,
+        "gossip_spread": "medium",
+        "description": "Engaged in trade with outsiders"
+      },
+      "warn_outsiders_of_patrol": {
+        "legion": -50,
+        "community": -20,
+        "outsider": 40,
+        "gossip_spread": "very_high",
+        "description": "Warned outsiders of Legion activity"
+      },
+      "mistreat_outsider_trader": {
+        "legion": 20,
+        "community": 0,
+        "outsider": -40,
+        "gossip_spread": "high",
+        "description": "Treated outsider trader poorly"
+      },
+      "negotiate_peacefully": {
+        "legion": 5,
+        "community": 20,
+        "outsider": 25,
+        "gossip_spread": "high",
+        "description": "Negotiated peacefully with outsiders"
+      },
+      "threaten_outsiders": {
+        "legion": 25,
+        "community": 10,
+        "outsider": -50,
+        "gossip_spread": "very_high",
+        "description": "Made threats toward outsiders"
+      }
+    },
+    "moral_choices": {
+      "follow_unjust_order": {
+        "legion": 30,
+        "community": -30,
+        "outsider": 0,
+        "gossip_spread": "high",
+        "description": "Followed morally questionable order"
+      },
+      "refuse_order": {
+        "legion": -40,
+        "community": 30,
+        "outsider": 10,
+        "gossip_spread": "very_high",
+        "description": "Refused direct order from superior"
+      },
+      "show_mercy_to_enemy": {
+        "legion": -20,
+        "community": 40,
+        "outsider": 30,
+        "gossip_spread": "very_high",
+        "description": "Showed mercy when had power to harm"
+      },
+      "choose_duty_over_friend": {
+        "legion": 40,
+        "community": -20,
+        "outsider": 0,
+        "gossip_spread": "very_high",
+        "description": "Betrayed friend for duty"
+      },
+      "choose_friend_over_duty": {
+        "legion": -40,
+        "community": 40,
+        "outsider": 10,
+        "gossip_spread": "very_high",
+        "description": "Betrayed duty for friend"
+      }
+    },
+    "resource_distribution": {
+      "rations_to_soldiers_first": {
+        "legion": 30,
+        "community": -40,
+        "outsider": 0,
+        "gossip_spread": "medium",
+        "description": "Prioritized soldiers in food rationing"
+      },
+      "rations_to_vulnerable_first": {
+        "legion": -15,
+        "community": 40,
+        "outsider": 15,
+        "gossip_spread": "medium",
+        "description": "Prioritized children/elderly in rationing"
+      },
+      "fair_distribution": {
+        "legion": 5,
+        "community": 20,
+        "outsider": 10,
+        "gossip_spread": "low",
+        "description": "Distributed resources fairly"
+      },
+      "stole_supplies": {
+        "legion": -30,
+        "community": -50,
+        "outsider": -20,
+        "gossip_spread": "very_high",
+        "description": "Stole community resources"
+      }
+    }
+  },
+  "decay_rates": {
+    "legion_per_day": 10,
+    "community_per_day": 5,
+    "outsider_per_month": 3,
+    "decay_if_no_relevant_action_days": 7
+  },
+  "gossip_spread_multipliers": {
+    "very_low": 0.3,
+    "low": 0.7,
+    "medium": 1.5,
+    "high": 2.5,
+    "very_high": 4.0
+  },
+  "witness_reputation_impact": {
+    "direct_witness": 1.0,
+    "heard_from_witness": 0.6,
+    "heard_through_chain": 0.3,
+    "rumor_contradicted": -0.5
+  }
+}

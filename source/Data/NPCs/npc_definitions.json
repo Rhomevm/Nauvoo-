@@ -1,0 +1,396 @@
+{
+  "npcs": [
+    {
+      "id": "npc_captain_isaiah_marks",
+      "name": "Captain Isaiah Marks",
+      "age": 42,
+      "occupation": "officer",
+      "faction": "legion_soldier",
+      "legion_rank": "captain",
+      "beliefs": ["faithful", "authoritative", "defensive"],
+      "home_location_id": "loc_marks_house",
+      "relationships": [
+        {
+          "target_npc_id": "npc_sarah_marks",
+          "initial_trust": 80,
+          "initial_fear": 0,
+          "initial_respect": 75,
+          "relationship_type": "family"
+        },
+        {
+          "target_npc_id": "npc_commander_john",
+          "initial_trust": 70,
+          "initial_fear": 10,
+          "initial_respect": 80,
+          "relationship_type": "colleague"
+        }
+      ],
+      "schedule_id": "schedule_captain_marks",
+      "traits": ["honorable", "ambitious", "skeptical"]
+    },
+    {
+      "id": "npc_commander_john",
+      "name": "Commander John Smith",
+      "age": 52,
+      "occupation": "officer",
+      "faction": "legion_soldier",
+      "legion_rank": "commander",
+      "beliefs": ["faithful", "strict", "hierarchical"],
+      "home_location_id": "loc_commander_house",
+      "relationships": [
+        {
+          "target_npc_id": "npc_captain_isaiah_marks",
+          "initial_trust": 75,
+          "initial_fear": 0,
+          "initial_respect": 70,
+          "relationship_type": "colleague"
+        }
+      ],
+      "schedule_id": "schedule_commander_john",
+      "traits": ["authoritative", "religious", "uncompromising"]
+    },
+    {
+      "id": "npc_sara_williams",
+      "name": "Sara Williams",
+      "age": 28,
+      "occupation": "healer",
+      "faction": "lds_civilian",
+      "beliefs": ["faithful", "compassionate", "pragmatic"],
+      "home_location_id": "loc_sara_home",
+      "relationships": [
+        {
+          "target_npc_id": "npc_thomas_brown",
+          "initial_trust": 60,
+          "initial_fear": 0,
+          "initial_respect": 50,
+          "relationship_type": "friend"
+        }
+      ],
+      "schedule_id": "schedule_sara_williams",
+      "traits": ["nurturing", "intelligent", "independent"]
+    },
+    {
+      "id": "npc_thomas_brown",
+      "name": "Thomas Brown",
+      "age": 35,
+      "occupation": "blacksmith",
+      "faction": "lds_civilian",
+      "beliefs": ["faithful", "pragmatic", "skeptical"],
+      "home_location_id": "loc_thomas_home",
+      "relationships": [
+        {
+          "target_npc_id": "npc_sara_williams",
+          "initial_trust": 60,
+          "initial_fear": 0,
+          "initial_respect": 50,
+          "relationship_type": "friend"
+        }
+      ],
+      "schedule_id": "schedule_thomas_brown",
+      "traits": ["hardworking", "honest", "cautious"]
+    },
+    {
+      "id": "npc_elder_joseph",
+      "name": "Elder Joseph Fielding",
+      "age": 68,
+      "occupation": "preacher",
+      "faction": "lds_civilian",
+      "beliefs": ["faithful", "wise", "spiritual"],
+      "home_location_id": "loc_joseph_home",
+      "relationships": [
+        {
+          "target_npc_id": "npc_commander_john",
+          "initial_trust": 50,
+          "initial_fear": 0,
+          "initial_respect": 70,
+          "relationship_type": "colleague"
+        }
+      ],
+      "schedule_id": "schedule_elder_joseph",
+      "traits": ["wise", "patient", "spiritual"]
+    },
+    {
+      "id": "npc_mary_johnson",
+      "name": "Mary Johnson",
+      "age": 26,
+      "occupation": "farmer",
+      "faction": "lds_civilian",
+      "beliefs": ["faithful", "concerned", "ambitious"],
+      "home_location_id": "loc_mary_home",
+      "relationships": [
+        {
+          "target_npc_id": "npc_sarah_marks",
+          "initial_trust": 40,
+          "initial_fear": 5,
+          "initial_respect": 50,
+          "relationship_type": "acquaintance"
+        }
+      ],
+      "schedule_id": "schedule_mary_johnson",
+      "traits": ["hardworking", "anxious", "outspoken"]
+    },
+    {
+      "id": "npc_jacob_harrison",
+      "name": "Jacob Harrison",
+      "age": 45,
+      "occupation": "trader",
+      "faction": "outsider",
+      "beliefs": ["pragmatic", "suspicious", "independent"],
+      "home_location_id": "loc_harrison_camp",
+      "relationships": [
+        {
+          "target_npc_id": "npc_commander_john",
+          "initial_trust": 20,
+          "initial_fear": 30,
+          "initial_respect": 30,
+          "relationship_type": "stranger"
+        }
+      ],
+      "schedule_id": "schedule_jacob_harrison",
+      "traits": ["cunning", "resourceful", "ambitious"]
+    },
+    {
+      "id": "npc_sarah_marks",
+      "name": "Sarah Marks",
+      "age": 40,
+      "occupation": "housewife",
+      "faction": "lds_civilian",
+      "beliefs": ["faithful", "protective", "domestic"],
+      "home_location_id": "loc_marks_house",
+      "relationships": [
+        {
+          "target_npc_id": "npc_captain_isaiah_marks",
+          "initial_trust": 85,
+          "initial_fear": 0,
+          "initial_respect": 75,
+          "relationship_type": "family"
+        }
+      ],
+      "schedule_id": "schedule_sarah_marks",
+      "traits": ["devoted", "protective", "worried"]
+    },
+    {
+      "id": "npc_sergeant_james",
+      "name": "Sergeant James Mitchell",
+      "age": 38,
+      "occupation": "officer",
+      "faction": "legion_soldier",
+      "legion_rank": "sergeant",
+      "beliefs": ["faithful", "loyal", "obedient"],
+      "home_location_id": "loc_james_barracks",
+      "relationships": [
+        {
+          "target_npc_id": "npc_captain_isaiah_marks",
+          "initial_trust": 75,
+          "initial_fear": 0,
+          "initial_respect": 80,
+          "relationship_type": "colleague"
+        }
+      ],
+      "schedule_id": "schedule_sergeant_james",
+      "traits": ["disciplined", "loyal", "strict"]
+    },
+    {
+      "id": "npc_rebecca_hart",
+      "name": "Rebecca Hart",
+      "age": 22,
+      "occupation": "merchant",
+      "faction": "lds_civilian",
+      "beliefs": ["faithful", "curious", "ambitious"],
+      "home_location_id": "loc_rebecca_shop",
+      "relationships": [
+        {
+          "target_npc_id": "npc_thomas_brown",
+          "initial_trust": 45,
+          "initial_fear": 0,
+          "initial_respect": 40,
+          "relationship_type": "acquaintance"
+        }
+      ],
+      "schedule_id": "schedule_rebecca_hart",
+      "traits": ["intelligent", "entrepreneurial", "curious"]
+    }
+  ],
+  "schedules": [
+    {
+      "id": "schedule_captain_marks",
+      "npc_id": "npc_captain_isaiah_marks",
+      "daily_routine": [
+        {
+          "time_start_minute": 360,
+          "time_end_minute": 420,
+          "location_id": "loc_marks_house",
+          "action": "rest",
+          "interruptible": false,
+          "social_group": ["npc_sarah_marks"]
+        },
+        {
+          "time_start_minute": 420,
+          "time_end_minute": 480,
+          "location_id": "loc_marks_house",
+          "action": "eat",
+          "interruptible": true,
+          "social_group": ["npc_sarah_marks"]
+        },
+        {
+          "time_start_minute": 480,
+          "time_end_minute": 540,
+          "location_id": "loc_legion_hq",
+          "action": "travel",
+          "interruptible": false
+        },
+        {
+          "time_start_minute": 540,
+          "time_end_minute": 720,
+          "location_id": "loc_drill_grounds",
+          "action": "training",
+          "interruptible": false,
+          "social_group": ["npc_sergeant_james"]
+        },
+        {
+          "time_start_minute": 720,
+          "time_end_minute": 780,
+          "location_id": "loc_market",
+          "action": "eat",
+          "interruptible": true,
+          "social_group": ["npc_commander_john"]
+        },
+        {
+          "time_start_minute": 780,
+          "time_end_minute": 1080,
+          "location_id": "loc_blacksmith",
+          "action": "work",
+          "interruptible": true
+        },
+        {
+          "time_start_minute": 1080,
+          "time_end_minute": 1140,
+          "location_id": "loc_town_gate",
+          "action": "guard_duty",
+          "interruptible": false,
+          "social_group": ["npc_sergeant_james"]
+        },
+        {
+          "time_start_minute": 1140,
+          "time_end_minute": 1260,
+          "location_id": "loc_marks_house",
+          "action": "socialize",
+          "interruptible": true,
+          "social_group": ["npc_sarah_marks"]
+        },
+        {
+          "time_start_minute": 1260,
+          "time_end_minute": 1320,
+          "location_id": "loc_legion_hq",
+          "action": "work",
+          "interruptible": false
+        },
+        {
+          "time_start_minute": 1320,
+          "time_end_minute": 1440,
+          "location_id": "loc_marks_house",
+          "action": "rest",
+          "interruptible": false,
+          "social_group": ["npc_sarah_marks"]
+        }
+      ]
+    },
+    {
+      "id": "schedule_commander_john",
+      "npc_id": "npc_commander_john",
+      "daily_routine": [
+        {
+          "time_start_minute": 360,
+          "time_end_minute": 480,
+          "location_id": "loc_commander_house",
+          "action": "rest",
+          "interruptible": false
+        },
+        {
+          "time_start_minute": 480,
+          "time_end_minute": 540,
+          "location_id": "loc_legion_hq",
+          "action": "work",
+          "interruptible": false
+        },
+        {
+          "time_start_minute": 540,
+          "time_end_minute": 900,
+          "location_id": "loc_legion_hq",
+          "action": "work",
+          "interruptible": false
+        },
+        {
+          "time_start_minute": 900,
+          "time_end_minute": 1020,
+          "location_id": "loc_meeting_house",
+          "action": "pray",
+          "interruptible": false
+        },
+        {
+          "time_start_minute": 1020,
+          "time_end_minute": 1260,
+          "location_id": "loc_legion_hq",
+          "action": "work",
+          "interruptible": false
+        },
+        {
+          "time_start_minute": 1260,
+          "time_end_minute": 1440,
+          "location_id": "loc_commander_house",
+          "action": "rest",
+          "interruptible": false
+        }
+      ]
+    },
+    {
+      "id": "schedule_sara_williams",
+      "npc_id": "npc_sara_williams",
+      "daily_routine": [
+        {
+          "time_start_minute": 360,
+          "time_end_minute": 480,
+          "location_id": "loc_sara_home",
+          "action": "rest",
+          "interruptible": false
+        },
+        {
+          "time_start_minute": 480,
+          "time_end_minute": 660,
+          "location_id": "loc_sara_clinic",
+          "action": "work",
+          "interruptible": true
+        },
+        {
+          "time_start_minute": 660,
+          "time_end_minute": 780,
+          "location_id": "loc_market",
+          "action": "socialize",
+          "interruptible": true,
+          "social_group": ["npc_rebecca_hart"]
+        },
+        {
+          "time_start_minute": 780,
+          "time_end_minute": 1080,
+          "location_id": "loc_sara_clinic",
+          "action": "work",
+          "interruptible": true
+        },
+        {
+          "time_start_minute": 1080,
+          "time_end_minute": 1200,
+          "location_id": "loc_sara_home",
+          "action": "rest",
+          "interruptible": true
+        },
+        {
+          "time_start_minute": 1200,
+          "time_end_minute": 1440,
+          "location_id": "loc_sara_home",
+          "action": "rest",
+          "interruptible": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,192 @@
+[
+  {
+    "id": "dialogue_captain_marks_introduction",
+    "npc_id": "npc_captain_isaiah_marks",
+    "title": "Introduction to Captain Marks",
+    "root_node_id": "node_marks_intro_1",
+    "triggers": ["game_start"],
+    "one_time_only": false,
+    "nodes": [
+      {
+        "id": "node_marks_intro_1",
+        "type": "speech",
+        "speaker_npc_id": "npc_captain_isaiah_marks",
+        "text": "Welcome to the Nauvoo Legion, recruit. I'm Captain Isaac Marks. I expect you'll pull your weight around here.",
+        "emotion": "neutral",
+        "next_node_id": "node_marks_intro_choices"
+      },
+      {
+        "id": "node_marks_intro_choices",
+        "type": "choice",
+        "choices": [
+          {
+            "id": "choice_marks_eager",
+            "text": "I'm ready to serve the Legion with honor.",
+            "next_node_id": "node_marks_response_eager",
+            "consequence_type": "reputation_change",
+            "consequences": {
+              "legion_delta": 10,
+              "npc_trust_delta": 5
+            }
+          },
+          {
+            "id": "choice_marks_questions",
+            "text": "What exactly will be expected of me?",
+            "next_node_id": "node_marks_response_questions",
+            "consequence_type": "none"
+          },
+          {
+            "id": "choice_marks_uncertain",
+            "text": "I'm... still deciding if this is right for me.",
+            "next_node_id": "node_marks_response_uncertain",
+            "consequence_type": "reputation_change",
+            "consequences": {
+              "legion_delta": -5,
+              "npc_trust_delta": -10
+            }
+          }
+        ]
+      },
+      {
+        "id": "node_marks_response_eager",
+        "type": "speech",
+        "speaker_npc_id": "npc_captain_isaiah_marks",
+        "text": "Good. That's what I want to hear. You'll attend drills daily, maintain your equipment, and follow orders. The safety of this settlement depends on it.",
+        "emotion": "satisfied",
+        "next_node_id": "node_marks_closing"
+      },
+      {
+        "id": "node_marks_response_questions",
+        "type": "speech",
+        "speaker_npc_id": "npc_captain_isaiah_marks",
+        "text": "Training, patrols, drills. You'll learn how to handle a musket, maintain discipline, and protect our people. I expect full commitment.",
+        "emotion": "neutral",
+        "next_node_id": "node_marks_closing"
+      },
+      {
+        "id": "node_marks_response_uncertain",
+        "type": "speech",
+        "speaker_npc_id": "npc_captain_isaiah_marks",
+        "text": "If you're not sure about this, maybe you should reconsider. We can't afford doubt in the Legion.",
+        "emotion": "stern",
+        "next_node_id": "node_marks_closing"
+      },
+      {
+        "id": "node_marks_closing",
+        "type": "speech",
+        "speaker_npc_id": "npc_captain_isaiah_marks",
+        "text": "Report to Sergeant James for your first drill at dawn. Dismissed.",
+        "emotion": "neutral",
+        "next_node_id": null
+      }
+    ]
+  },
+  {
+    "id": "dialogue_sara_welcome",
+    "npc_id": "npc_sara_williams",
+    "title": "Meeting Sara the Healer",
+    "root_node_id": "node_sara_1",
+    "triggers": ["arriving_in_town"],
+    "one_time_only": false,
+    "nodes": [
+      {
+        "id": "node_sara_1",
+        "type": "speech",
+        "speaker_npc_id": "npc_sara_williams",
+        "text": "Hello there, new soul. I'm Sara Williams. I tend to the sick and injured here in Nauvoo. It's good to have new hands at work.",
+        "emotion": "friendly",
+        "next_node_id": "node_sara_choices"
+      },
+      {
+        "id": "node_sara_choices",
+        "type": "choice",
+        "choices": [
+          {
+            "id": "choice_sara_help",
+            "text": "Is there anything I can do to help?",
+            "next_node_id": "node_sara_response_help",
+            "consequence_type": "reputation_change",
+            "consequences": {
+              "community_delta": 15,
+              "npc_trust_delta": 15
+            }
+          },
+          {
+            "id": "choice_sara_curious",
+            "text": "How did you come to Nauvoo?",
+            "next_node_id": "node_sara_response_curious",
+            "consequence_type": "none"
+          }
+        ]
+      },
+      {
+        "id": "node_sara_response_help",
+        "type": "speech",
+        "speaker_npc_id": "npc_sara_williams",
+        "text": "That's kind of you to offer. We could always use help gathering herbs and tending to patients. Come by the clinic whenever you have time.",
+        "emotion": "grateful",
+        "next_node_id": null
+      },
+      {
+        "id": "node_sara_response_curious",
+        "type": "speech",
+        "speaker_npc_id": "npc_sara_williams",
+        "text": "I came with the faith, seeking sanctuary and purpose. This community needs healing, not just of bodies but of hearts. That's why I'm here.",
+        "emotion": "reflective",
+        "next_node_id": null
+      }
+    ]
+  },
+  {
+    "id": "dialogue_thomas_blacksmith",
+    "npc_id": "npc_thomas_brown",
+    "title": "Meeting Thomas the Blacksmith",
+    "root_node_id": "node_thomas_1",
+    "triggers": ["visiting_blacksmith"],
+    "one_time_only": false,
+    "nodes": [
+      {
+        "id": "node_thomas_1",
+        "type": "speech",
+        "speaker_npc_id": "npc_thomas_brown",
+        "text": "Welcome to my smithy. I'm Thomas Brown. Need any repairs or equipment made?",
+        "emotion": "businesslike",
+        "next_node_id": "node_thomas_choices"
+      },
+      {
+        "id": "node_thomas_choices",
+        "type": "choice",
+        "choices": [
+          {
+            "id": "choice_thomas_business",
+            "text": "What services do you offer?",
+            "next_node_id": "node_thomas_services",
+            "consequence_type": "none"
+          },
+          {
+            "id": "choice_thomas_trust",
+            "text": "I heard you're trustworthy. Are you happy with things in Nauvoo?",
+            "next_node_id": "node_thomas_thoughts",
+            "consequence_type": "none"
+          }
+        ]
+      },
+      {
+        "id": "node_thomas_services",
+        "type": "speech",
+        "speaker_npc_id": "npc_thomas_brown",
+        "text": "I repair tools, make weapons, and craft whatever the community needs. The Legion orders muskets regularly. Quality work, fair prices.",
+        "emotion": "proud",
+        "next_node_id": null
+      },
+      {
+        "id": "node_thomas_thoughts",
+        "type": "speech",
+        "speaker_npc_id": "npc_thomas_brown",
+        "text": "Happy is... complicated these days. There's good community here, but I worry about tensions. The Legion grows more powerful each day.",
+        "emotion": "concerned",
+        "next_node_id": null
+      }
+    ]
+  }
+]
